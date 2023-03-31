@@ -3,6 +3,7 @@ package org.testclasses;
 import PageClasses.LoginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -25,8 +26,10 @@ public class VerifyUpcomingDropdown {
         LoginPage login = new LoginPage(driver);
         login.open();
         login.signInWith("rahulsingh@yopmail.com", "test@123");
-        /*searchCourse("");
-        boolean searchResult = verifySearchResult();*/
+        UpcomingConference upcomingConferencePage = new UpcomingConference(driver);
+//        Assert.assertTrue(upcomingConferencePage.isOpen());
+        upcomingConferencePage.search("Engineering");
+//        boolean searchResult = verifySearchResult();
     }
     @AfterClass
     public void tearDown() {
