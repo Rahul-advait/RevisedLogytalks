@@ -27,7 +27,7 @@ public class LoginPage {
         driver.findElement(By.linkText(LOGIN_LINK)).click();
     }
 
-    public void signInWith(String email, String password) {
+    public UpcomingConference signInWith(String email, String password) {
         WebElement emailField = driver.findElement(By.xpath(EMAIL_FIELD));
         emailField.clear();
         emailField.sendKeys(email);
@@ -38,5 +38,7 @@ public class LoginPage {
 
         WebElement loginBtn = driver.findElement(By.cssSelector(LOG_IN_BTN));
         loginBtn.click();
+
+        return new UpcomingConference(driver);
     }
 }

@@ -17,9 +17,11 @@ public class UpcomingConference {
         return URL.equalsIgnoreCase(driver.getCurrentUrl());
     }
 
-    public void search(String category) {
+    public UpcomingConferenceResultPage filter(String category) {
         Select selectCourse = new Select(driver.findElement(By.cssSelector(UPCOMING_DROPDOWN)));
         selectCourse.selectByVisibleText(category);
+
+        return new UpcomingConferenceResultPage(driver);
     }
 }
 

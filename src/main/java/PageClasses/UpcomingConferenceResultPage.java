@@ -11,6 +11,10 @@ public class UpcomingConferenceResultPage {
     private String URL = "?category=7";
     private String COURSES_LIST = "//div[#'nav-home']/?/?/div[@safeclass~'\\brow\\b']/div";
 
+    public UpcomingConferenceResultPage(WebDriver driver) {
+        this.driver = driver;
+    }
+
     public boolean isOpen() {
         return driver.getCurrentUrl().contains(URL);
     }
