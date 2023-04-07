@@ -20,6 +20,7 @@ public class LoginPage {
         this.driver = driver;
     }
 
+
     public void open() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(POP_BTN))));
