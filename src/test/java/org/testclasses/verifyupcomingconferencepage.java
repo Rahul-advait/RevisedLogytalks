@@ -1,10 +1,12 @@
 package org.testclasses;
 
+import PageClasses.HomePage;
 import PageClasses.LoginPage;
 import PageClasses.UpcomingConference;
 import PageClasses.UpcomingConferenceResultPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -13,21 +15,20 @@ import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertTrue;
 
-public class VerifyUpcomingDropdown {
+public class verifyupcomingconferencepage {
     private WebDriver driver;
-    private String baseURL;
 
     @BeforeClass
     public void setUp() {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        baseURL = "https://logytalks.com/";
+        String baseURL = "https://logytalks.com/";
         driver.get(baseURL);
     }
 
     @Test
-    public void verify() {
+    public void verifyUpcomingFilter() {
         LoginPage login = new LoginPage(driver);
         login.open();
         UpcomingConference upcomingConferencePage = login.signInWith("rahulsingh@yopmail.com", "test@123");
@@ -36,6 +37,14 @@ public class VerifyUpcomingDropdown {
 
         boolean searchResult = filterResult.isOpen();
         assertTrue(searchResult);
+    }
+
+    @Test(dependsOnMethods = "verifyUpcomingFilter")
+    public void verifyShareYourKnowledgeLink() {
+        UpcomingConferenceResultPage upcomingConferenceResultPage = new UpcomingConferenceResultPage(driver);
+        HomePage homepage = upcomingConferenceResultPage.clickShareYourKnowledgeLink();
+        boolean clickResult = homepage.isOpen();
+        Assert.assertTrue(clickResult);
     }
 
     @AfterClass
