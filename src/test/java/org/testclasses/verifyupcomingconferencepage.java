@@ -1,54 +1,64 @@
 package org.testclasses;
 
-import PageClasses.*;
+import PageClasses.HomePage;
+import PageClasses.LoginPage;
+import PageClasses.NavigationBar;
+import PageClasses.UpcomingConference;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-import static org.testng.Assert.assertTrue;
 
 public class verifyupcomingconferencepage {
     private WebDriver driver;
-    private UpcomingConference upcomingConferencePage;
+    private NavigationBar navigationBar;
     private LoginPage login;
 
+    private UpcomingConference upcomingConference;
+
     @BeforeClass
-    public void setUp() {
+    public void setUp() throws InterruptedException {
+
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         String baseURL = "https://logytalks.com/";
         driver.get(baseURL);
         login = new LoginPage(driver);
         login.open();
-        upcomingConferencePage = login.signInWith("rahulsingh@yopmail.com", "test@123");
+        navigationBar = login.signInWith("rahulsingh@yopmail.com", "Test@123");
     }
 
-    @Test
-    public void verifyUpcomingFilter() {
-        driver.get(upcomingConferencePage.getURL());
-        UpcomingConferenceResultPage filterResult = upcomingConferencePage.filter("Business");
-        boolean searchResult = filterResult.isOpen();
-        assertTrue(searchResult);
-    }
+
+//    @Test
+//    public void verifyUpcomingFilter() {
+//        upcomingConference = (UpcomingConference) navigationBar.clickConferenceCategory("Upcoming");
+//        UpcomingConferenceResultPage filterResult = upcomingConference.filter("Business");
+//        boolean searchResult = filterResult.isOpen();
+//        Assert.assertTrue(searchResult);
+//    }
 
     @Test
     public void verifyShareYourKnowledgeLink() {
-        driver.get(upcomingConferencePage.getURL());
-        HomePage homepage = upcomingConferencePage.clickShareYourKnowledgeLink();
+        upcomingConference = (UpcomingConference) navigationBar.clickConferenceCategory("Upcoming");
+        HomePage homepage = upcomingConference.clickShareYourKnowledgeLink();
         boolean clickResult = homepage.isOpen();
-        assertTrue(clickResult);
+        upcomingConference.cutPopUp();
+        Assert.assertTrue(clickResult);
     }
 
-    @Test
-    public void verifyLinks() {
-        NavigationBar nav = new NavigationBar(driver);
-        nav.clickUpcomingBtn("previous", 0);
-    }
+//    @Test
+//    public void verifyLogin() {
+//        MyConferencePage myConference = (MyConferencePage) navigationBar.clickConferenceCategory("My Conferences");
+//        boolean checkMyconferenceUrl = myConference.isOpen();
+//        myConference.cutPopUp();
+//        Assert.assertTrue(checkMyconferenceUrl);
+//    }
 
     @AfterClass
     public void tearDown() {

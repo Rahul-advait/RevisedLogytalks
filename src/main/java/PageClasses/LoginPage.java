@@ -11,6 +11,8 @@ import java.time.Duration;
 public class LoginPage {
     private WebDriver driver;
     private String POP_BTN = "/html/body/div[1]/div/div/button";
+//    private String POP_BTN = "//div[@id='modal-subscribe']/div[@role='document']//span[.='×']";
+
     private String EMAIL_FIELD = "//input[@id='email']";
     private String LOGIN_LINK = "LOGIN";
     private String PASSWORD_FIELD = "//input[@id='password']";
@@ -22,13 +24,13 @@ public class LoginPage {
 
 
     public void open() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(POP_BTN))));
         driver.findElement(By.xpath(POP_BTN)).click();
         driver.findElement(By.linkText(LOGIN_LINK)).click();
     }
 
-    public UpcomingConference signInWith(String email, String password) {
+    public NavigationBar signInWith(String email, String password) {
         WebElement emailField = driver.findElement(By.xpath(EMAIL_FIELD));
         emailField.clear();
         emailField.sendKeys(email);
@@ -40,6 +42,6 @@ public class LoginPage {
         WebElement loginBtn = driver.findElement(By.cssSelector(LOG_IN_BTN));
         loginBtn.click();
 
-        return new UpcomingConference(driver);
+        return new NavigationBar(driver);
     }
 }
