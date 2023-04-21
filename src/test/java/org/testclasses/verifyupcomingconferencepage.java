@@ -1,12 +1,8 @@
 package org.testclasses;
 
-import PageClasses.HomePage;
-import PageClasses.LoginPage;
-import PageClasses.UpcomingConference;
-import PageClasses.UpcomingConferenceResultPage;
+import PageClasses.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -34,6 +30,7 @@ public class verifyupcomingconferencepage {
 
     @Test
     public void verifyUpcomingFilter() {
+        driver.get(upcomingConferencePage.getURL());
         UpcomingConferenceResultPage filterResult = upcomingConferencePage.filter("Business");
         boolean searchResult = filterResult.isOpen();
         assertTrue(searchResult);
@@ -41,16 +38,21 @@ public class verifyupcomingconferencepage {
 
     @Test
     public void verifyShareYourKnowledgeLink() {
-        upcomingConferencePage = new UpcomingConference(driver);
         driver.get(upcomingConferencePage.getURL());
         HomePage homepage = upcomingConferencePage.clickShareYourKnowledgeLink();
         boolean clickResult = homepage.isOpen();
-        Assert.assertTrue(clickResult);
+        assertTrue(clickResult);
+    }
+
+    @Test
+    public void verifyLinks() {
+        NavigationBar nav = new NavigationBar(driver);
+        nav.clickUpcomingBtn("previous", 0);
     }
 
     @AfterClass
     public void tearDown() {
-//        driver.quit();
+        driver.quit();
     }
 
 
