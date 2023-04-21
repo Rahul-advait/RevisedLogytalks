@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class UpcomingConference {
+public class UpcomingConference extends NavigationBar{
     protected WebDriver driver;
     private String UPCOMING_DROPDOWN = ".form-control";
     private String URL = "https://logytalks.com/upcoming-conferences";
@@ -18,6 +18,7 @@ public class UpcomingConference {
 
 
     public UpcomingConference(WebDriver driver) {
+        super(driver);
         this.driver = driver;
     }
 
