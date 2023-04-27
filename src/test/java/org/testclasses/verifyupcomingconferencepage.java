@@ -1,9 +1,6 @@
 package org.testclasses;
 
-import PageClasses.HomePage;
-import PageClasses.LoginPage;
-import PageClasses.NavigationBar;
-import PageClasses.UpcomingConference;
+import PageClasses.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -22,26 +19,25 @@ public class verifyupcomingconferencepage {
     private UpcomingConference upcomingConference;
 
     @BeforeClass
-    public void setUp() throws InterruptedException {
-
+    public void setUp() {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         String baseURL = "https://logytalks.com/";
         driver.get(baseURL);
-        login = new LoginPage(driver);
-        login.open();
+        navigationBar = new NavigationBar(driver);
+        login = navigationBar.clickLogin();
         navigationBar = login.signInWith("rahulsingh@yopmail.com", "Test@123");
     }
 
 
-//    @Test
-//    public void verifyUpcomingFilter() {
-//        upcomingConference = (UpcomingConference) navigationBar.clickConferenceCategory("Upcoming");
-//        UpcomingConferenceResultPage filterResult = upcomingConference.filter("Business");
-//        boolean searchResult = filterResult.isOpen();
-//        Assert.assertTrue(searchResult);
-//    }
+    @Test
+    public void verifyUpcomingFilter() {
+        upcomingConference = (UpcomingConference) navigationBar.clickConferenceCategory("Upcoming");
+        UpcomingConferenceResultPage filterResult = upcomingConference.filter("Business");
+        boolean searchResult = filterResult.isOpen();
+        Assert.assertTrue(searchResult);
+    }
 
     @Test
     public void verifyShareYourKnowledgeLink() {
@@ -52,13 +48,13 @@ public class verifyupcomingconferencepage {
         Assert.assertTrue(clickResult);
     }
 
-//    @Test
-//    public void verifyLogin() {
-//        MyConferencePage myConference = (MyConferencePage) navigationBar.clickConferenceCategory("My Conferences");
-//        boolean checkMyconferenceUrl = myConference.isOpen();
-//        myConference.cutPopUp();
-//        Assert.assertTrue(checkMyconferenceUrl);
-//    }
+    @Test
+    public void verifyLogin() {
+        MyConferencePage myConference = (MyConferencePage) navigationBar.clickConferenceCategory("My Conferences");
+        boolean checkMyconferenceUrl = myConference.isOpen();
+        myConference.cutPopUp();
+        Assert.assertTrue(checkMyconferenceUrl);
+    }
 
     @AfterClass
     public void tearDown() {
