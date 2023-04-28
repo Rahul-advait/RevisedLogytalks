@@ -1,6 +1,7 @@
 package org.testclasses;
 
 import PageClasses.*;
+import base.BaseClassTest;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -11,7 +12,7 @@ import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
 
 
-public class verifyupcomingconferencepage {
+public class verifyupcomingconferencepage extends BaseClassTest {
     private WebDriver driver;
     private NavigationBar navigationBar;
     private LoginPage login;
@@ -20,13 +21,7 @@ public class verifyupcomingconferencepage {
 
     @BeforeClass
     public void setUp() {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        String baseURL = "https://logytalks.com/";
-        driver.get(baseURL);
-        navigationBar = new NavigationBar(driver);
-        login = navigationBar.clickLogin();
+        super.setUp();
         navigationBar = login.signInWith("rahulsingh@yopmail.com", "Test@123");
     }
 
