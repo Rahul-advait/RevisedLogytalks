@@ -1,32 +1,28 @@
 package PageClasses;
 
+import Base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class LoginPage {
+public class LoginPage extends BasePage {
     private WebDriver driver;
-    private String EMAIL_FIELD = "//input[@id='email']";
-    //    private String LOGIN_LINK = "LOGIN";
-    private String PASSWORD_FIELD = "//input[@id='password']";
-    private String LOG_IN_BTN = ".update-profile-btn1";
+    private String EMAIL_FIELD = "xpath=>//input[@id='email']";
+    private String PASSWORD_FIELD = "xpath=>//input[@id='password']";
+    private String LOG_IN_BTN = "cssSelector=>.update-profile-btn1";
 
     public LoginPage(WebDriver driver) {
+        super(driver);
         this.driver = driver;
     }
 
 
     public NavigationBar signInWith(String email, String password) {
-        WebElement emailField = driver.findElement(By.xpath(EMAIL_FIELD));
-        emailField.clear();
-        emailField.sendKeys(email);
+        sendData(EMAIL_FIELD, email, "Entering Email");
 
-        WebElement passwordField = driver.findElement(By.xpath(PASSWORD_FIELD));
-        passwordField.clear();
-        passwordField.sendKeys(password);
+        sendData(PASSWORD_FIELD, password, "Entering Password");
 
-        WebElement loginBtn = driver.findElement(By.cssSelector(LOG_IN_BTN));
-        loginBtn.click();
+        elementClick(LOG_IN_BTN, "Clicked on Login Btn");
 
         return new NavigationBar(driver);
     }

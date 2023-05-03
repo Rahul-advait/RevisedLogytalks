@@ -1,27 +1,20 @@
 package org.testclasses;
 
-import PageClasses.*;
+import PageClasses.HomePage;
+import PageClasses.MyConferencePage;
+import PageClasses.UpcomingConference;
+import PageClasses.UpcomingConferenceResultPage;
 import base.BaseClassTest;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.util.concurrent.TimeUnit;
 
-
-public class verifyupcomingconferencepage extends BaseClassTest {
-    private WebDriver driver;
-    private NavigationBar navigationBar;
-    private LoginPage login;
-
+public class Verifyupcomingconferencepage extends BaseClassTest {
     private UpcomingConference upcomingConference;
 
     @BeforeClass
     public void setUp() {
-        super.setUp();
         navigationBar = login.signInWith("rahulsingh@yopmail.com", "Test@123");
     }
 
@@ -45,16 +38,11 @@ public class verifyupcomingconferencepage extends BaseClassTest {
 
     @Test
     public void verifyLogin() {
-        MyConferencePage myConference = (MyConferencePage) navigationBar.clickConferenceCategory("My Conferences");
+        MyConferencePage myConference = (MyConferencePage) navigationBar.clickConferenceCategory(
+                "My Conferences");
         boolean checkMyconferenceUrl = myConference.isOpen();
         myConference.cutPopUp();
         Assert.assertTrue(checkMyconferenceUrl);
     }
-
-    @AfterClass
-    public void tearDown() {
-        driver.quit();
-    }
-
 
 }
