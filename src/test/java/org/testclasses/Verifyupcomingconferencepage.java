@@ -6,17 +6,19 @@ import PageClasses.UpcomingConference;
 import PageClasses.UpcomingConferenceResultPage;
 import base.BaseClassTest;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 
+<<<<<<< HEAD:src/test/java/org/testclasses/verifyupcomingconferencepage.java
 public class verifyupcomingconferencepage extends BaseClassTest {
+=======
+public class Verifyupcomingconferencepage extends BaseClassTest {
+>>>>>>> 3f37352f23eca7716357c617846fe601d40a3d22:src/test/java/org/testclasses/Verifyupcomingconferencepage.java
     private UpcomingConference upcomingConference;
 
     @BeforeClass
     public void setUp() {
-        super.setUp();
         navigationBar = login.signInWith("rahulsingh@yopmail.com", "Test@123");
     }
 
@@ -40,16 +42,11 @@ public class verifyupcomingconferencepage extends BaseClassTest {
 
     @Test
     public void verifyLogin() {
-        MyConferencePage myConference = (MyConferencePage) navigationBar.clickConferenceCategory("My Conferences");
+        MyConferencePage myConference = (MyConferencePage) navigationBar.clickConferenceCategory(
+                "My Conferences");
         boolean checkMyconferenceUrl = myConference.isOpen();
         myConference.cutPopUp();
         Assert.assertTrue(checkMyconferenceUrl);
     }
-
-    @AfterClass
-    public void tearDown() {
-        driver.quit();
-    }
-
 
 }

@@ -1,7 +1,6 @@
 package org.testclasses;
 
 import base.BaseClassTest;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -11,10 +10,8 @@ import static org.testng.Assert.assertTrue;
 
 public class VerifyLoginFeature extends BaseClassTest {
 
-
     @BeforeClass
     public void setUp() {
-        super.setUp();
     }
 
     @AfterMethod
@@ -39,8 +36,5 @@ public class VerifyLoginFeature extends BaseClassTest {
         assertFalse(result);
     }
 
-    @AfterClass
-    public void tearDown() {
-        driver.quit();
-    }
+
 }
