@@ -1,22 +1,17 @@
 package org.testclasses;
 
-import PageClasses.*;
+import PageClasses.HomePage;
+import PageClasses.MyConferencePage;
+import PageClasses.UpcomingConference;
+import PageClasses.UpcomingConferenceResultPage;
 import base.BaseClassTest;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.util.concurrent.TimeUnit;
-
 
 public class verifyupcomingconferencepage extends BaseClassTest {
-    private WebDriver driver;
-    private NavigationBar navigationBar;
-    private LoginPage login;
-
     private UpcomingConference upcomingConference;
 
     @BeforeClass

@@ -9,9 +9,9 @@ import org.testng.annotations.BeforeClass;
 import java.util.concurrent.TimeUnit;
 
 public class BaseClassTest {
-    private WebDriver driver;
-    private NavigationBar navigationBar;
-    private LoginPage login;
+    protected WebDriver driver;
+    protected NavigationBar navigationBar;
+    protected LoginPage login;
 
 
     @BeforeClass
