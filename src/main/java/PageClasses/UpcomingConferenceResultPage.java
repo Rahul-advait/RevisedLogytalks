@@ -1,6 +1,5 @@
 package PageClasses;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -8,7 +7,7 @@ import java.util.List;
 
 public class UpcomingConferenceResultPage extends UpcomingConference {
     private String URL = "?category=7";
-    private String COURSES_LIST = "//div[#'nav-home']/?/?/div[@safeclass~'\\brow\\b']/div";
+    private String COURSES_LIST = "xpath=>//div[#'nav-home']/?/?/div[@safeclass~'\\brow\\b']/div";
 
     public UpcomingConferenceResultPage(WebDriver driver) {
         super(driver);
@@ -18,8 +17,8 @@ public class UpcomingConferenceResultPage extends UpcomingConference {
         return driver.getCurrentUrl().contains(URL);
     }
 
-    public int coursesCount() {
-        List<WebElement> conferenceList = driver.findElements(By.xpath(COURSES_LIST));
+    private int coursesCount() {
+        List<WebElement> conferenceList = getElementList(COURSES_LIST, "Courses List");
         return conferenceList.size();
     }
 

@@ -151,6 +151,15 @@ public class CustomDriver {
             System.out.println("Cannot click on :: " + info);
         }
     }
+    public void javascriptScrollToView(String locator, String info) {
+        WebElement element = getElement(locator, info);
+        try {
+            js.executeScript("arguments[0].scrollIntoView();", element);
+            System.out.println("Scrolled on :: " + info);
+        } catch (Exception e) {
+            System.out.println("Cannot scrolled on :: " + info);
+        }
+    }
 
     public void clickWhenReady(String locator, int timeout) {
         try {
@@ -172,6 +181,26 @@ public class CustomDriver {
         }
     }
 
+    public void clickWhenVisible(String locator, int timeout) {
+        try {
+            driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+            WebElement element = null;
+            element = getElement(locator, " to be clicked after waiting ");
+
+            System.out.println("Waiting for max:: " + timeout + " seconds for element to be clickable");
+
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+            if (wait.until(
+                    ExpectedConditions.visibilityOf(element)).isDisplayed()) {
+                element.click();
+            }
+            System.out.println("Element clicked on the web page");
+            driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        } catch (Exception e) {
+            System.out.println("Element not appeared on the web page");
+            driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        }
+    }
     public void sendData(WebElement element, String data, String info, Boolean clear) {
         try {
             if (clear) {

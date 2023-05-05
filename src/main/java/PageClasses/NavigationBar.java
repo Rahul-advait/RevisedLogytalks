@@ -1,13 +1,9 @@
 package PageClasses;
 
 import Base.BasePage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 import java.util.List;
 
 public class NavigationBar extends BasePage {
@@ -21,7 +17,8 @@ public class NavigationBar extends BasePage {
     private String ROOMS = "Rooms";
     private String POP_UP_CLOSE_BTN = "cssSelector=>.introjs-skipbutton";
     private String LOGIN_LINK = "linkText=>LOGIN";
-    private String POP_BTN = "xpath=>/html/body/div[1]/div/div/button";
+    //    private String POP_BTN = "xpath=>/html/body/div[1]/div/div/button";
+    private String POP_BTN = "cssSelector=>.close";
     private String PROFILE = "cssSelector=>button#dropdownMenuButton";
     private String LOGOUT_BTN = "cssSelector=>.logout-btn a";
 
@@ -32,7 +29,8 @@ public class NavigationBar extends BasePage {
 
     public LoginPage clickLogin() {
         if (firstTime) {
-            clickWhenReady(POP_UP_CLOSE_BTN, 30);
+            if (isDisplayed(POP_UP_CLOSE_BTN, "pop btn"))
+                clickWhenVisible(POP_UP_CLOSE_BTN, 30);
             elementClick(LOGIN_LINK, "Click on login btn");
             firstTime = false;
         } else {
