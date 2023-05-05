@@ -23,7 +23,6 @@ public class BaseClassTest {
         String baseURL = "https://logytalks.com/";
         driver.get(baseURL);
         navigationBar = new NavigationBar(driver);
-        login = navigationBar.clickLogin();
     }
 
     @AfterClass

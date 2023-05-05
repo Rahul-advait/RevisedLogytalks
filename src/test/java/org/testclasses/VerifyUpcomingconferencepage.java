@@ -10,11 +10,13 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 
-public class Verifyupcomingconferencepage extends BaseClassTest {
+public class VerifyUpcomingconferencepage extends BaseClassTest {
     private UpcomingConference upcomingConference;
 
     @BeforeClass
     public void setUp() {
+
+        login = navigationBar.clickLogin();
         navigationBar = login.signInWith("rahulsingh@yopmail.com", "Test@123");
     }
 

@@ -4,7 +4,7 @@
     <test name="Milestone 1" preserve-order="true">
         <classes>
             <class name="org.testclasses.VerifyLoginFeature"/>
-            <class name="org.testclasses.Verifyupcomingconferencepage"/>
+            <class name="org.testclasses.VerifyUpcomingconferencepage"/>
         </classes>
     </test>
 </suite>

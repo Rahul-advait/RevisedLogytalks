@@ -160,7 +160,7 @@ public class CustomDriver {
 
             System.out.println("Waiting for max:: " + timeout + " seconds for element to be clickable");
 
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
             wait.until(
                     ExpectedConditions.elementToBeClickable(element));
             element.click();
