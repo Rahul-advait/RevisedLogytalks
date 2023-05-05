@@ -25,7 +25,6 @@ public class CustomDriver {
     }
 
 
-
     public void refresh() {
         driver.navigate().refresh();
         System.out.println("The current browser location was refreshed");
@@ -151,6 +150,7 @@ public class CustomDriver {
             System.out.println("Cannot click on :: " + info);
         }
     }
+
     public void javascriptScrollToView(String locator, String info) {
         WebElement element = getElement(locator, info);
         try {
@@ -198,9 +198,12 @@ public class CustomDriver {
             driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         } catch (Exception e) {
             System.out.println("Element not appeared on the web page");
+            driver.navigate().refresh();
             driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         }
     }
+
+
     public void sendData(WebElement element, String data, String info, Boolean clear) {
         try {
             if (clear) {
