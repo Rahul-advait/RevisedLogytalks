@@ -17,7 +17,8 @@ public class NavigationBar extends BasePage {
     private String ROOMS = "Rooms";
     private String POP_UP_CLOSE_BTN = "cssSelector=>.introjs-skipbutton";
     private String LOGIN_LINK = "linkText=>LOGIN";
-    private String POP_BTN = "xpath=>/html/body/div[1]/div/div/button";
+    //    private String POP_BTN = "xpath=>/html/body/div[1]/div/div/button";
+    private String POP_BTN = "cssSelector=>.close";
     private String PROFILE = "cssSelector=>button#dropdownMenuButton";
     private String LOGOUT_BTN = "cssSelector=>.logout-btn a";
 
@@ -28,7 +29,8 @@ public class NavigationBar extends BasePage {
 
     public LoginPage clickLogin() {
         if (firstTime) {
-            clickWhenReady(POP_BTN, 30);
+            if (isDisplayed(POP_BTN, "pop btn"))
+                clickWhenVisible(POP_BTN, 30);
             elementClick(LOGIN_LINK, "Click on login btn");
             firstTime = false;
         } else {
@@ -51,10 +53,7 @@ public class NavigationBar extends BasePage {
     }
 
     public NavigationBar clickConferenceCategory(String categoryType) {
-//        WebElement conferencesBtn = driver.findElement(By.linkText(CONFERENCES));
-//        WebElement conferencesBtn = getElement(CONFERENCES, "Get Conference btn");
         elementClick(CONFERENCES, "click conference btn");
-//        List<WebElement> categoryList = driver.findElements(By.cssSelector(CONFERENCES_CATEGORIES));
         List<WebElement> categoryList = getElementList(CONFERENCES_CATEGORIES, "Get conferences category list");
         for (WebElement category : categoryList) {
             if (category.getText().equalsIgnoreCase(categoryType)) {

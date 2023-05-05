@@ -10,17 +10,13 @@ import org.testng.annotations.BeforeClass;
 import java.util.concurrent.TimeUnit;
 
 public class BaseClassTest {
-<<<<<<< HEAD
     protected WebDriver driver;
-=======
-    public WebDriver driver;
->>>>>>> 3f37352f23eca7716357c617846fe601d40a3d22
     protected NavigationBar navigationBar;
     protected LoginPage login;
 
 
     @BeforeClass
-    public void baseSetUp() {
+    public void setUp() {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);

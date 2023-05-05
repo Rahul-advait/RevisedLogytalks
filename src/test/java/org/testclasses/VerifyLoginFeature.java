@@ -12,6 +12,7 @@ public class VerifyLoginFeature extends BaseClassTest {
 
     @BeforeClass
     public void setUp() {
+        super.setUp();
     }
 
     @AfterMethod
