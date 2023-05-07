@@ -15,7 +15,6 @@ public class VerifyUpcomingconferencepage extends BaseClassTest {
 
     @BeforeClass
     public void setUp() {
-        login = navigationBar.clickLogin();
         navigationBar = login.signInWith("rahulsingh@yopmail.com", "Test@123");
     }
 

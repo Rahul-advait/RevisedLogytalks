@@ -29,7 +29,8 @@ public class NavigationBar extends BasePage {
 
     public LoginPage clickLogin() {
         if (firstTime) {
-            clickWhenReady(POP_UP_CLOSE_BTN, 30);
+            clickPopClose(POP_BTN, 30);
+            elementClick(LOGIN_LINK, "Click on login btn");
             firstTime = false;
         } else {
             elementClick(LOGIN_LINK, "Click on login btn");
@@ -47,7 +48,7 @@ public class NavigationBar extends BasePage {
     }
 
     public void cutPopUp() {
-        clickWhenReady(POP_BTN, 30);
+        clickWhenReady(POP_UP_CLOSE_BTN, 30);
     }
 
     public NavigationBar clickConferenceCategory(String categoryType) {

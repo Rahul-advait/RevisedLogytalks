@@ -181,7 +181,7 @@ public class CustomDriver {
         }
     }
 
-    public void clickWhenVisible(String locator, int timeout) {
+    public void clickPopClose(String locator, int timeout) {
         try {
             driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
             WebElement element = null;
@@ -189,11 +189,11 @@ public class CustomDriver {
 
             System.out.println("Waiting for max:: " + timeout + " seconds for element to be clickable");
 
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
-            if (wait.until(
-                    ExpectedConditions.visibilityOf(element)).isDisplayed()) {
-                element.click();
-            }
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout), Duration.ofMillis(1000));
+            wait.until(ExpectedConditions.urlToBe("https://logytalks.com/"));
+            wait.until(ExpectedConditions.elementToBeClickable(element));
+            element.click();
+
             System.out.println("Element clicked on the web page");
             driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         } catch (Exception e) {

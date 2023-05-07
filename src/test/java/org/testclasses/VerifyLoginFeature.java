@@ -12,7 +12,7 @@ public class VerifyLoginFeature extends BaseClassTest {
 
     @BeforeClass
     public void setUp() {
-        login = navigationBar.clickLogin();
+
     }
 
     @AfterMethod
