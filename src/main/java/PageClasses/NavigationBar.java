@@ -1,6 +1,7 @@
 package PageClasses;
 
 import Base.BasePage;
+import Utilities.Util;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -21,6 +22,7 @@ public class NavigationBar extends BasePage {
     private String POP_BTN = "cssSelector=>.close";
     private String PROFILE = "cssSelector=>button#dropdownMenuButton";
     private String LOGOUT_BTN = "cssSelector=>.logout-btn a";
+    private String CREATE_CONFERENCE_LINK = "Create Conference";
 
     public NavigationBar(WebDriver driver) {
         super(driver);
@@ -69,6 +71,11 @@ public class NavigationBar extends BasePage {
             }
         }
         return new NavigationBar(driver);
+    }
+
+    public boolean verifyHeader() {
+        WebElement link = getElement(CREATE_CONFERENCE_LINK, "create conference link");
+        return Util.verifyTextMatch(link.getText(), "Creates Conference");
     }
 
 }

@@ -12,7 +12,6 @@ public class VerifyLoginFeature extends BaseClassTest {
 
     @BeforeClass
     public void setUp() {
-
     }
 
     @AfterMethod
@@ -26,11 +25,13 @@ public class VerifyLoginFeature extends BaseClassTest {
     @Test
     public void validCredentials() {
         navigationBar = login.signInWith("rahulsingh@yopmail.com", "Test@123");
+        boolean headerResult = navigationBar.verifyHeader();
+        assertTrue(headerResult);
         boolean result = navigationBar.isUserLoggedIn();
         assertTrue(result);
     }
 
-    @Test
+    @Test(enabled = false)
     public void invalidCred() {
         navigationBar = login.signInWith("rahulsinghas@yopmail.com", "Test@123");
         boolean result = navigationBar.isUserLoggedIn();

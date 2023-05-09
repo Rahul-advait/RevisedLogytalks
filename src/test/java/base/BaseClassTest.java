@@ -13,11 +13,11 @@ public class BaseClassTest {
 
     @BeforeClass
     public void beforeSetUp() {
-        driver = WebDriverFactory.getInstance().getDriver("chrome");
+        driver = WebDriverFactory.getInstance().getDriver("firefox");
         String baseURL = "https://logytalks.com/";
         driver.get(baseURL);
         navigationBar = new NavigationBar(driver);
-        login = navigationBar.cliwwckLogin();
+        login = navigationBar.clickLogin();
     }
 
 
