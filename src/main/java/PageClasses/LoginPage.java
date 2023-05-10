@@ -14,7 +14,6 @@ public class LoginPage extends BasePage {
         this.driver = driver;
     }
 
-
     public NavigationBar signInWith(String email, String password) {
         sendData(EMAIL_FIELD, email, "Entering Email");
         sendData(PASSWORD_FIELD, password, "Entering Password");

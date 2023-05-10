@@ -14,5 +14,10 @@ public class BasePage extends CustomDriver{
     public boolean verifyTitle(String expectedTitle) {
         return driver.getTitle().equalsIgnoreCase(expectedTitle);
     }
+
+    public boolean isOpen(String url) {
+
+        return driver.getCurrentUrl().contains(url);
+    }
 }
 

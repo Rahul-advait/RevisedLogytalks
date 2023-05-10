@@ -1,8 +1,10 @@
 package PageClasses;
 
+import Utilities.Util;
 import org.openqa.selenium.WebDriver;
 
 public class MyConferencePage extends NavigationBar{
+
     private WebDriver driver;
     private String myConferenceUrl = "https://logytalks.com/my-conferences";
 
@@ -17,6 +19,7 @@ public class MyConferencePage extends NavigationBar{
     }
 
     public boolean isOpen() {
-        return getCurrentUrl().equalsIgnoreCase(myConferenceUrl);
+//      return getCurrentUrl().equalsIgnoreCase(myConferenceUrl);
+        return Util.verifyTextMatch(getCurrentUrl(), myConferenceUrl);
     }
 }

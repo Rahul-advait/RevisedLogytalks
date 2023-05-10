@@ -1,9 +1,7 @@
 package PageClasses;
 
+import Utilities.Util;
 import org.openqa.selenium.WebDriver;
-
-
-import java.time.Duration;
 
 public class HomePage {
     private WebDriver driver;
@@ -15,8 +13,7 @@ public class HomePage {
     }
 
     public boolean isOpen() {
-
-        return URL.equalsIgnoreCase(driver.getCurrentUrl());
+        return Util.verifyTextMatch(driver.getCurrentUrl(), URL);
     }
 
 
