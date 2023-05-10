@@ -93,7 +93,7 @@ public class WebDriverFactory {
 
     private FirefoxOptions setFFOptions() {
         FirefoxOptions options = new FirefoxOptions();
-//        options.setCapability(CapabilityType.HAS_NATIVE_EVENTS, false);
+        options.setCapability("nativeEvents", false);
         return options;
     }
 
