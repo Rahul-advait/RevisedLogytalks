@@ -4,6 +4,7 @@ import PageClasses.HomePage;
 import PageClasses.MyConferencePage;
 import PageClasses.UpcomingConference;
 import PageClasses.UpcomingConferenceResultPage;
+import Utilities.Constants;
 import base.BaseClassTest;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
@@ -15,7 +16,7 @@ public class VerifyUpcomingconferencepage extends BaseClassTest {
 
     @BeforeClass
     public void setUp() {
-        navigationBar = login.signInWith("rahulsingh@yopmail.com", "Test@123");
+        navigationBar = login.signInWith(Constants.DEFAULT_USERNAME, Constants.DEFAULT_PASSWORD);
     }
 
 
