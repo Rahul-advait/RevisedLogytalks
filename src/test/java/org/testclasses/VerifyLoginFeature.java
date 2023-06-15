@@ -1,6 +1,8 @@
 package org.testclasses;
 
+import Utilities.Constants;
 import base.BaseClassTest;
+import base.CheckPoint;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -24,11 +26,13 @@ public class VerifyLoginFeature extends BaseClassTest {
 
     @Test
     public void validCredentials() {
-        navigationBar = login.signInWith("rahulsingh@yopmail.com", "Test@123");
+        navigationBar = login.signInWith(Constants.DEFAULT_USERNAME, Constants.DEFAULT_PASSWORD);
         boolean headerResult = navigationBar.verifyHeader();
-        assertTrue(headerResult);
+//        assertTrue(headerResult);
+        CheckPoint.mark("TC-01", headerResult, "header verification");
         boolean result = navigationBar.isUserLoggedIn();
-        assertTrue(result);
+//        assertTrue(result);
+        CheckPoint.markFinal("TC_02", result, "profile icon verification");
     }
 
     @Test(enabled = false)

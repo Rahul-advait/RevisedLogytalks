@@ -10,12 +10,12 @@ import java.util.List;
 public class NavigationBar extends BasePage {
     private static boolean firstTime = true;
     private WebDriver driver;
-    private String LIBRARY = "Library";
+    private String LIBRARY = "linkText=>Library";
     private String CONFERENCES = "linkText=>Conferences";
     private String CONFERENCES_CATEGORIES = "cssSelector=>.dropdown-menu.show > a";
-    private String SUMMITS = "Summits";
-    private String NETWORK = "Network";
-    private String ROOMS = "Rooms";
+    private String SUMMITS = "linkText=>Summits";
+    private String NETWORK = "linkText=>Network";
+    private String ROOMS = "linkText=>Rooms";
     private String POP_UP_CLOSE_BTN = "cssSelector=>.introjs-skipbutton";
     private String LOGIN_LINK = "linkText=>LOGIN";
     //    private String POP_BTN = "xpath=>/html/body/div[1]/div/div/button";

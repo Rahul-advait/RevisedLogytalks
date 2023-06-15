@@ -1,5 +1,6 @@
 package base;
 
+import Utilities.Constants;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -26,17 +27,17 @@ public class WebDriverFactory {
         setDriver(browser);
         if (threadedDriver.get() == null) {
             try {
-                if (browser.equalsIgnoreCase("firefox")) {
+                if (browser.equalsIgnoreCase(Constants.FIREFOX)) {
                     FirefoxOptions ffOptions = setFFOptions();
                     driver = new FirefoxDriver(ffOptions);
                     threadedDriver.set(driver);
                 }
-                if (browser.equalsIgnoreCase("chrome")) {
+                if (browser.equalsIgnoreCase(Constants.CHROME)) {
                     ChromeOptions chromeOptions = setChromeOptions();
                     driver = new ChromeDriver(chromeOptions);
                     threadedDriver.set(driver);
                 }
-                if (browser.equalsIgnoreCase("iexplorer")) {
+                if (browser.equalsIgnoreCase(Constants.IE)) {
                     InternetExplorerOptions ieOptions = setIEOptions();
                     driver = new InternetExplorerDriver(ieOptions);
                     threadedDriver.set(driver);
@@ -59,20 +60,19 @@ public class WebDriverFactory {
     //  Set System property according to browser
     private void setDriver(String browser) {
         String driverPath, driverValue = "", driverKey = "";
-
-        String directory = System.getProperty("user.dir") + "//drivers//";
-        String os = System.getProperty("os.name").toLowerCase().substring(0, 3);  //Get name of Operating System
+        String directory = Constants.USER_DIRECTORY + Constants.DRIVERS_DIRECTORY;
+        String os = Constants.OS_NAME.toLowerCase().substring(0, 3);
         System.out.println("OS name from system property: " + os);
 
-        if (browser.equalsIgnoreCase("chrome")) {
-            driverKey = "webdriver.chrome.driver";
-            driverValue = "chromedriver";
-        } else if (browser.equalsIgnoreCase("firefox")) {
-            driverKey = "webdriver.gecko.driver";
-            driverValue = "geckodriver";
-        } else if (browser.equalsIgnoreCase("ie")) {
-            driverKey = "webdriver.edge.driver";
-            driverValue = "msedgedriver";
+        if (browser.equalsIgnoreCase(Constants.CHROME)) {
+            driverKey = Constants.CHROME_DRIVER_KEY;
+            driverValue = Constants.CHROME_DRIVER_VALUE;
+        } else if (browser.equalsIgnoreCase(Constants.FIREFOX)) {
+            driverKey = Constants.GECKO_DRIVER_KEY;
+            driverValue = Constants.GECKO_DRIVER_VALUE;
+        } else if (browser.equalsIgnoreCase(Constants.IE)) {
+            driverKey = Constants.IE_DRIVER_KEY;
+            driverValue = Constants.IE_DRIVER_VALUE;
         } else {
             System.out.println("Browser not supported");
         }
@@ -94,7 +94,7 @@ public class WebDriverFactory {
 
     private FirefoxOptions setFFOptions() {
         FirefoxOptions options = new FirefoxOptions();
-//        options.setCapability(CapabilityType.HAS_NATIVE_EVENTS, false);
+        options.setCapability("nativeEvents", false);
         return options;
     }
 

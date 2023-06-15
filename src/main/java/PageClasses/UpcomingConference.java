@@ -1,5 +1,6 @@
 package PageClasses;
 
+import Utilities.Constants;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
@@ -7,7 +8,7 @@ public class UpcomingConference extends NavigationBar {
 
     protected WebDriver driver;
     private String UPCOMING_DROPDOWN = "cssSelector=>.form-control";
-    private String URL = "https://logytalks.com/upcoming-conferences";
+    private String URL = Constants.BASE_URL + "/upcoming-conferences";
     private String SHARE_YOUR_KNOWLEDGE_LINK = "cssSelector=>[data-aos='zoom-in']";
 
 
