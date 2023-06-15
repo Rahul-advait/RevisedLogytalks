@@ -3,7 +3,6 @@ package base;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -57,10 +56,12 @@ public class WebDriverFactory {
         threadedDriver.set(null);
     }
 
+    //  Set System property according to browser
     private void setDriver(String browser) {
         String driverPath, driverValue = "", driverKey = "";
+
         String directory = System.getProperty("user.dir") + "//drivers//";
-        String os = System.getProperty("os.name").toLowerCase().substring(0, 3);
+        String os = System.getProperty("os.name").toLowerCase().substring(0, 3);  //Get name of Operating System
         System.out.println("OS name from system property: " + os);
 
         if (browser.equalsIgnoreCase("chrome")) {

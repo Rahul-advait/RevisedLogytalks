@@ -22,7 +22,7 @@ public class NavigationBar extends BasePage {
     private String POP_BTN = "cssSelector=>.close";
     private String PROFILE = "cssSelector=>button#dropdownMenuButton";
     private String LOGOUT_BTN = "cssSelector=>.logout-btn a";
-    private String CREATE_CONFERENCE_LINK = "Create Conference";
+    private String CREATE_CONFERENCE_LINK = "linkText=>Create Conference";
 
     public NavigationBar(WebDriver driver) {
         super(driver);
