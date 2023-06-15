@@ -107,17 +107,10 @@ public class CustomDriver {
         List<WebElement> elementList = getElementList(locator, info);
         int size = elementList.size();
         if (size > 0) {
-<<<<<<< HEAD
-            System.out.println(info + " Element is present");
+            System.out.println(info + "Element is present");
             return true;
         } else {
-            System.out.println(info + " Element is not present");
-=======
-            System.out.println("Element is present");
-            return true;
-        } else {
-            System.out.println("Element is not present");
->>>>>>> c56bd9bfbaf0f852ea1e6355a5ba45e68e51213c
+            System.out.println(info + "Element is not present");
             return false;
         }
     }
