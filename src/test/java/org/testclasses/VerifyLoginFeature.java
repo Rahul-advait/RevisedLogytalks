@@ -8,7 +8,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertTrue;
 
 public class VerifyLoginFeature extends BaseClassTest {
 
@@ -28,10 +27,8 @@ public class VerifyLoginFeature extends BaseClassTest {
     public void validCredentials() {
         navigationBar = login.signInWith(Constants.DEFAULT_USERNAME, Constants.DEFAULT_PASSWORD);
         boolean headerResult = navigationBar.verifyHeader();
-//        assertTrue(headerResult);
         CheckPoint.mark("TC-01", headerResult, "header verification");
         boolean result = navigationBar.isUserLoggedIn();
-//        assertTrue(result);
         CheckPoint.markFinal("TC_02", result, "profile icon verification");
     }
 

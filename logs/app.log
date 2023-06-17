@@ -1,0 +1,3 @@
+14:49:38.906 INFO  overview.LoggingDemo -Info Message Printed
+14:49:38.925 ERROR overview.LoggingDemo -Error Message Printed
+14:49:38.925 FATAL overview.LoggingDemo -Fatal Message Printed

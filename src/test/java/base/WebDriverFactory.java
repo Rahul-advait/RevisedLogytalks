@@ -1,6 +1,8 @@
 package base;
 
 import Utilities.Constants;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -12,6 +14,7 @@ import org.openqa.selenium.ie.InternetExplorerOptions;
 import java.util.concurrent.TimeUnit;
 
 public class WebDriverFactory {
+    private static final Logger log = LogManager.getLogger(WebDriverFactory.class.getName());
     private static final WebDriverFactory instance = new WebDriverFactory();
     private static ThreadLocal<WebDriver> threadedDriver = new ThreadLocal<WebDriver>();
 
@@ -35,6 +38,7 @@ public class WebDriverFactory {
                 if (browser.equalsIgnoreCase(Constants.CHROME)) {
                     ChromeOptions chromeOptions = setChromeOptions();
                     driver = new ChromeDriver(chromeOptions);
+
                     threadedDriver.set(driver);
                 }
                 if (browser.equalsIgnoreCase(Constants.IE)) {
@@ -62,7 +66,7 @@ public class WebDriverFactory {
         String driverPath, driverValue = "", driverKey = "";
         String directory = Constants.USER_DIRECTORY + Constants.DRIVERS_DIRECTORY;
         String os = Constants.OS_NAME.toLowerCase().substring(0, 3);
-        System.out.println("OS name from system property: " + os);
+        log.info("OS name from system property: " + os);
 
         if (browser.equalsIgnoreCase(Constants.CHROME)) {
             driverKey = Constants.CHROME_DRIVER_KEY;
@@ -74,7 +78,7 @@ public class WebDriverFactory {
             driverKey = Constants.IE_DRIVER_KEY;
             driverValue = Constants.IE_DRIVER_VALUE;
         } else {
-            System.out.println("Browser not supported");
+            log.info("Browser not supported");
         }
 
         try {
