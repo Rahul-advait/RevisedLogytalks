@@ -22,6 +22,9 @@ public class VerifyLoginFeature extends BaseClassTest {
             navigationBar.clickLogOut();
             navigationBar.clickLoginLink();
         }
+        if (!navigationBar.isOpen("login")) {
+            navigationBar.clickLoginLink();
+        }
     }
 
     @Test
@@ -73,6 +76,14 @@ public class VerifyLoginFeature extends BaseClassTest {
     public void signUpRedirect() {
         login.clickSignUpBtn();
         boolean result = login.isOpen("register");
+        assertTrue(result);
+    }
+
+    @Test
+    public void googleSignUp() {
+        homePage = login.clickGoogleSignUpBtn();
+        navigationBar = homePage.cutPopUp();
+        boolean result = navigationBar.isUserLoggedIn();
         assertTrue(result);
     }
 }
