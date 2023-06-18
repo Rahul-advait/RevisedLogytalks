@@ -19,7 +19,7 @@ public class BaseClassTest {
         String baseURL = Constants.BASE_URL;
         driver.get(baseURL);
         navigationBar = new NavigationBar(driver);
-        login = navigationBar.clickLogin();
+        login = navigationBar.clickLoginLink();
     }
 
     @BeforeMethod

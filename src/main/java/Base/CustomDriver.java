@@ -1,5 +1,6 @@
 package Base;
 
+import Utilities.Constants;
 import Utilities.Util;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
@@ -27,6 +28,23 @@ public class CustomDriver {
         js = (JavascriptExecutor) driver;
     }
 
+
+    public void closeCurrentOpenNew(String page) {
+        String originalWindow = driver.getWindowHandle();
+        log.info("Originally in " + originalWindow);
+        driver.switchTo().newWindow(WindowType.TAB);
+        log.info("Now in " + driver.getWindowHandle());
+        String newWindow = driver.getWindowHandle();
+
+        driver.switchTo().window(originalWindow);
+        log.info("Switched to " + driver.getWindowHandle());
+        driver.close();
+        log.info("Closed current window");
+        driver.switchTo().window(newWindow);
+        log.info("Now in " + driver.getWindowHandle());
+        driver.get(Constants.BASE_URL + page);
+        log.info("Entered this URL : " + Constants.BASE_URL + page);
+    }
 
     public void refresh() {
         driver.navigate().refresh();
@@ -85,9 +103,9 @@ public class CustomDriver {
         By byType = getByType(locator);
         try {
             element = driver.findElement(byType);
-            log.info("Element " + info + " found with locator " + locator);
+            log.info(info + ", found with " + locator);
         } catch (Exception e) {
-            log.error("Element not found with locator : " + locator);
+            log.error("Element not found with " + locator);
             e.printStackTrace();
         }
         return element;
@@ -98,9 +116,9 @@ public class CustomDriver {
         By byType = getByType(locator);
         try {
             elementList = driver.findElements(byType);
-            log.info("Element list found with :" + locator);
+            log.info("Element list found with :" + locator + " of " + info);
         } catch (Exception e) {
-            log.error("Element list not found with : " + locator);
+            log.error("Element list not found with : " + locator + " of " + info);
             e.printStackTrace();
         }
         return elementList;
@@ -128,6 +146,7 @@ public class CustomDriver {
             }
         } catch (Exception e) {
             log.error("Cannot click on ::" + info);
+            e.printStackTrace();
             takeScreenshot("Click ERROR", "");
         }
     }
@@ -172,13 +191,13 @@ public class CustomDriver {
             WebElement element = null;
             element = getElement(locator, " to be clicked after waiting ");
 
-            log.info("Waiting for max:: " + timeout + " seconds for element to be clickable");
+            log.info("Waiting for " + timeout + " seconds for element to be clickable");
 
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
             wait.until(
                     ExpectedConditions.elementToBeClickable(element));
             element.click();
-            log.info("Element clicked on the web page");
+            log.info("Clicked on waited Element");
             driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         } catch (Exception e) {
             log.error("Element not appeared on the web page");
@@ -186,11 +205,11 @@ public class CustomDriver {
         }
     }
 
-    public void clickPopClose(String locator, int timeout) {
+    public void clickPopClose(String locator, int timeout, String info) {
         try {
             driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
             WebElement element = null;
-            element = getElement(locator, " to be clicked after waiting ");
+            element = getElement(locator, info);
 
             log.info("Waiting for max:: " + timeout + " seconds for element to be clickable");
 
@@ -199,7 +218,7 @@ public class CustomDriver {
             wait.until(ExpectedConditions.elementToBeClickable(element));
             element.click();
 
-            log.info("Element clicked on the web page");
+            log.info("Clicked on close btn");
             driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         } catch (Exception e) {
             log.error("Element not appeared on the web page");

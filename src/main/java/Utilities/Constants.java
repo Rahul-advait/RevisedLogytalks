@@ -15,6 +15,8 @@ public class Constants {
     public static final String CHROME_DRIVER_VALUE = "chromedriver";
     public static final String IE_DRIVER_VALUE = "IEDriverServer";
     public static final String DEFAULT_USERNAME = "rahulsingh@yopmail.com";
-    public static final String DEFAULT_PASSWORD = "VerifyLoginFeature";
+    public static final String DEFAULT_PASSWORD = "Test@123";
+    public static final String INVALID_USERNAME = "rahulsinghas@yopmail.com";
+    public static final String INVALID_PASSWORD = "Test@1234";
 }
 

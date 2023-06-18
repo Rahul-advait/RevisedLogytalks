@@ -3,6 +3,7 @@ package Utilities;
 import com.google.common.collect.Ordering;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.WindowType;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -268,4 +269,5 @@ public class Util {
         boolean sorted = Ordering.natural().isOrdered(list);
         return sorted;
     }
+
 }
