@@ -11,6 +11,9 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.ie.InternetExplorerOptions;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class WebDriverFactory {
@@ -92,7 +95,18 @@ public class WebDriverFactory {
 
     private ChromeOptions setChromeOptions() {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("disable-infobars");
+        options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
+        options.setExperimentalOption("useAutomationExtension", false);
+
+        Map<String, Object> prefs = new HashMap<String, Object>();
+
+        //      Pass the argument 1 to allow and 2 to block
+        prefs.put("profile.default_content_setting_values.notifications", 1);
+
+
+        options.setExperimentalOption("prefs", prefs);
+//        options.addArguments("--incognito");
+        options.addArguments("--disable-notifications");
         return options;
     }
 

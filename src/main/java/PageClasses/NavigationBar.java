@@ -55,8 +55,8 @@ public class NavigationBar extends BasePage {
     }
 
     public NavigationBar clickConferenceCategory(String categoryType) {
-        elementClick(CONFERENCES, "click conference btn");
-        List<WebElement> categoryList = getElementList(CONFERENCES_CATEGORIES, "Get conferences category list");
+        elementClick(CONFERENCES, "Conference btn");
+        List<WebElement> categoryList = getElementList(CONFERENCES_CATEGORIES, "Conferences categories");
         for (WebElement category : categoryList) {
             if (category.getText().equalsIgnoreCase(categoryType)) {
                 String categoryText = category.getText();

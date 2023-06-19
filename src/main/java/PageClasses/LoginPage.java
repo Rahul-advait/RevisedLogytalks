@@ -11,7 +11,8 @@ public class LoginPage extends BasePage {
     private String GOOGLE_BTN = "cssSelector=>.other-login-right > a:nth-of-type(2)";
     private String SIGN_UP = "cssSelector=>.term-condition-a > b";
     private WebDriver driver;
-    private String REMEMBER_ME_BTN = "cssSelector=>.checkmark";
+    //    private String REMEMBER_ME_BTN = "cssSelector=>.checkmark";
+    private String REMEMBER_ME_BTN = "cssSelector=>input#remember";
     private String EMAIL_FIELD = "xpath=>//input[@id='email']";
     private String PASSWORD_FIELD = "xpath=>//input[@id='password']";
     private String LOG_IN_BTN = "cssSelector=>.update-profile-btn1";
@@ -31,6 +32,10 @@ public class LoginPage extends BasePage {
         sendData(PASSWORD_FIELD, password, "Entering Password");
         if (rememberMe) {
             if (!isSelected(REMEMBER_ME_BTN, "Remember Me Button")) {
+                elementClick(REMEMBER_ME_BTN, "Remember Me Button");
+            }
+        } else {
+            if (isSelected(REMEMBER_ME_BTN, "Remember Me Button")) {
                 elementClick(REMEMBER_ME_BTN, "Remember Me Button");
             }
         }
