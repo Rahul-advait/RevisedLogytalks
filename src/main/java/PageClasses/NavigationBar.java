@@ -29,19 +29,20 @@ public class NavigationBar extends BasePage {
         this.driver = driver;
     }
 
-    public LoginPage clickLogin() {
+    public LoginPage clickLoginLink() {
+        signUpNotification();
         if (firstTime) {
-            clickPopClose(POP_BTN, 30);
-            elementClick(LOGIN_LINK, "Click on login btn");
+            clickPopClose(POP_BTN, 30, "Pop close btn");
+            elementClick(LOGIN_LINK, "login btn");
             firstTime = false;
         } else {
-            elementClick(LOGIN_LINK, "Click on login btn");
+            elementClick(LOGIN_LINK, "login btn");
         }
         return new LoginPage(driver);
     }
 
     public boolean isUserLoggedIn() {
-        return isElementPresent(PROFILE, " Finding profile");
+        return isElementPresent(PROFILE, "Profile ");
     }
 
     public void clickLogOut() {
@@ -54,8 +55,8 @@ public class NavigationBar extends BasePage {
     }
 
     public NavigationBar clickConferenceCategory(String categoryType) {
-        elementClick(CONFERENCES, "click conference btn");
-        List<WebElement> categoryList = getElementList(CONFERENCES_CATEGORIES, "Get conferences category list");
+        elementClick(CONFERENCES, "Conference btn");
+        List<WebElement> categoryList = getElementList(CONFERENCES_CATEGORIES, "Conferences categories");
         for (WebElement category : categoryList) {
             if (category.getText().equalsIgnoreCase(categoryType)) {
                 String categoryText = category.getText();
@@ -75,7 +76,7 @@ public class NavigationBar extends BasePage {
 
     public boolean verifyHeader() {
         WebElement link = getElement(CREATE_CONFERENCE_LINK, "create conference link");
-        return Util.verifyTextMatch(link.getText(), "Creates Conference");
+        return Util.verifyTextMatch(link.getText(), "Create Conference");
     }
 
 }

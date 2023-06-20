@@ -20,7 +20,10 @@ public class VerifyLoginFeature extends BaseClassTest {
     public void afterMethod() {
         if (navigationBar.isUserLoggedIn()) {
             navigationBar.clickLogOut();
-            navigationBar.clickLogin();
+            navigationBar.clickLoginLink();
+        }
+        if (!navigationBar.isOpen("login")) {
+            navigationBar.clickLoginLink();
         }
     }
 
@@ -28,19 +31,59 @@ public class VerifyLoginFeature extends BaseClassTest {
     public void validCredentials() {
         navigationBar = login.signInWith(Constants.DEFAULT_USERNAME, Constants.DEFAULT_PASSWORD);
         boolean headerResult = navigationBar.verifyHeader();
-//        assertTrue(headerResult);
         CheckPoint.mark("TC-01", headerResult, "header verification");
         boolean result = navigationBar.isUserLoggedIn();
-//        assertTrue(result);
         CheckPoint.markFinal("TC_02", result, "profile icon verification");
     }
 
-    @Test(enabled = false)
-    public void invalidCred() {
+    @Test
+    public void invalidEmail() {
         navigationBar = login.signInWith("rahulsinghas@yopmail.com", "Test@123");
         boolean result = navigationBar.isUserLoggedIn();
         assertFalse(result);
     }
 
+    @Test
+    public void emptyEmail() {
+        navigationBar = login.signInWith("", Constants.DEFAULT_PASSWORD);
+        boolean result = navigationBar.isUserLoggedIn();
+        assertFalse(result);
+    }
 
+    @Test
+    public void invalidPassword() {
+        navigationBar = login.signInWith(Constants.DEFAULT_USERNAME, Constants.INVALID_PASSWORD);
+        boolean result = navigationBar.isUserLoggedIn();
+        assertFalse(result);
+    }
+
+    @Test
+    public void emptyPassword() {
+        navigationBar = login.signInWith(Constants.DEFAULT_USERNAME, "");
+        boolean result = navigationBar.isUserLoggedIn();
+        assertFalse(result);
+    }
+
+    @Test
+    public void testRememberMe() {
+        navigationBar = login.signInWith(Constants.DEFAULT_USERNAME, Constants.DEFAULT_PASSWORD, true);
+        navigationBar.closeCurrentOpenNew("upcoming-conferences");
+        boolean result = navigationBar.isUserLoggedIn();
+        assertTrue(result);
+    }
+
+    @Test
+    public void signUpRedirect() {
+        login.clickSignUpBtn();
+        boolean result = login.isOpen("register");
+        assertTrue(result);
+    }
+
+    @Test
+    public void googleSignUp() {
+        homePage = login.clickGoogleSignUpBtn();
+        navigationBar = homePage.cutPopUp();
+        boolean result = navigationBar.isUserLoggedIn();
+        assertTrue(result);
+    }
 }

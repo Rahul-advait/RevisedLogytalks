@@ -1,5 +1,6 @@
 package base;
 
+import PageClasses.HomePage;
 import PageClasses.LoginPage;
 import PageClasses.NavigationBar;
 import Utilities.Constants;
@@ -12,6 +13,7 @@ public class BaseClassTest {
     public WebDriver driver;
     protected NavigationBar navigationBar;
     protected LoginPage login;
+    protected HomePage homePage;
 
     @BeforeClass
     public void beforeSetUp() {
@@ -19,7 +21,7 @@ public class BaseClassTest {
         String baseURL = Constants.BASE_URL;
         driver.get(baseURL);
         navigationBar = new NavigationBar(driver);
-        login = navigationBar.clickLogin();
+        login = navigationBar.clickLoginLink();
     }
 
     @BeforeMethod

@@ -16,7 +16,7 @@ public class VerifyUpcomingconferencepage extends BaseClassTest {
 
     @BeforeClass
     public void setUp() {
-        navigationBar = login.signInWith(Constants.DEFAULT_USERNAME, Constants.DEFAULT_PASSWORD);
+        navigationBar = login.signInWith(Constants.DEFAULT_USERNAME, Constants.DEFAULT_PASSWORD, false);
     }
 
 
