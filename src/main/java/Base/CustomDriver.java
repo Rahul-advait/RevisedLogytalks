@@ -211,7 +211,7 @@ public class CustomDriver {
             if (clear) {
                 element.clear();
             }
-            //Util.sleep(1000, "Waiting Before Entering Data");
+//            Util.sleep(1000, "Waiting Before Entering Data");
             element.sendKeys(data);
             System.out.println("Send Keys on element :: "
                     + info + " with data :: " + data);
