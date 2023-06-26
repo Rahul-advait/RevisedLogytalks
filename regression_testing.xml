@@ -5,7 +5,7 @@
         <classes>
             <class name="org.testclasses.VerifyUpcomingconferencepage">
                 <methods>
-                    <include name="verifyLogin"/>
+                    <include name="checkPageLinks"/>
                 </methods>
                 <!--            <class name="org.testclasses.VerifyUpcomingconferencepage"/>-->
             </class>

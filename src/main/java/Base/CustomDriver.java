@@ -13,6 +13,8 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -475,4 +477,48 @@ public class CustomDriver {
         log.info("Double Clicked on :: " + info);
         action.perform();
     }
+
+    public void checkPageLinks(String currentUrl) {
+        List<WebElement> links = null;
+        String url = "", linkText = "";
+        try {
+            links = getElementList("tagName=>a", "a links");
+            for (WebElement link : links) {
+                url = link.getAttribute("href");
+                linkText = link.getText();
+                if (url == null || url.isEmpty()) {
+                    log.error("URL is null: " + url + " " + linkText);
+                    continue;
+                }
+                if (!url.startsWith(currentUrl)) {
+                    log.error("URL belongs to another domain: " + url + " " + linkText);
+                    continue;
+                }
+                checkResponseCode(url, linkText);
+            }
+        } catch (Exception e) {
+            log.error("Exception ocurred while getting all page links");
+        }
+    }
+
+    public void checkResponseCode(String url, String linkText) {
+        HttpURLConnection huc;
+        int responseCode = 200;
+        try {
+            huc = (HttpURLConnection) (new URL(url).openConnection());
+            huc.setRequestMethod("HEAD");
+            huc.connect();
+            responseCode = huc.getResponseCode();
+            if (responseCode >= 400) {
+                log.error("The URL " + url + " is a broken link. Response code: "
+                        + responseCode + " " + linkText);
+            } else {
+                log.info("The URL " + url + " is a valid link. Response code: "
+                        + responseCode + " " + linkText);
+            }
+        } catch (Exception e) {
+            log.error("Exception occured while getting connecting with url");
+        }
+    }
+
 }

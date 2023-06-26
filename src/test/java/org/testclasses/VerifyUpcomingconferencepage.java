@@ -46,4 +46,9 @@ public class VerifyUpcomingconferencepage extends BaseClassTest {
         Assert.assertTrue(checkMyconferenceUrl);
     }
 
+    @Test
+    public void checkPageLinks(){
+        navigationBar.checkAllLinks();
+    }
+
 }
