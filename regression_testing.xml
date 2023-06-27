@@ -4,10 +4,10 @@
     <test name="Milestone 1" preserve-order="true">
         <classes>
             <class name="org.testclasses.VerifyLoginFeature">
-                <methods>
-                    <include name="emptyPassword"/>
-                </methods>
-                <!--            <class name="org.testclasses.VerifyUpcomingconferencepage"/>-->
+<!--                                <methods>-->
+<!--                                    <include name="googleSignUp"/>-->
+<!--                                </methods>-->
+<!--                <class name="org.testclasses.VerifyUpcomingPage">-->
             </class>
         </classes>
     </test>

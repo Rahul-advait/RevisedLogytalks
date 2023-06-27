@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+
 public class CustomDriver {
     private static final Logger log = LogManager.getLogger(CustomDriver.class.getName());
     protected WebDriver driver;
@@ -31,21 +32,33 @@ public class CustomDriver {
     }
 
 
-    public void closeCurrentOpenNew(String page) {
-        String originalWindow = driver.getWindowHandle();
-        log.info("Originally in " + originalWindow);
-        driver.switchTo().newWindow(WindowType.TAB);
-        log.info("Now in " + driver.getWindowHandle());
-        String newWindow = driver.getWindowHandle();
+    public boolean closeCurrentOpenNew(String page) {
+        boolean isNewWindow = false;
+        try {
+            String originalWindow = driver.getWindowHandle();
+            log.info("Originally in " + originalWindow);
+            driver.switchTo().newWindow(WindowType.TAB);
+//            js.executeScript("window.open();");
+            log.info("Now in " + driver.getWindowHandle());
+            String newWindow = driver.getWindowHandle();
 
-        driver.switchTo().window(originalWindow);
-        log.info("Switched to " + driver.getWindowHandle());
-        driver.close();
-        log.info("Closed current window");
-        driver.switchTo().window(newWindow);
-        log.info("Now in " + driver.getWindowHandle());
-        driver.get(Constants.BASE_URL + page);
-        log.info("Entered this URL : " + Constants.BASE_URL + page);
+            driver.switchTo().window(originalWindow);
+            log.info("Switched to " + driver.getWindowHandle());
+            driver.close();
+            log.info("Closed current window");
+            driver.switchTo().window(newWindow);
+            log.info("Now in " + driver.getWindowHandle());
+            driver.get(Constants.BASE_URL + page);
+            log.info("Entered this URL : " + Constants.BASE_URL + page);
+            isNewWindow = true;
+        } catch (Exception e) {
+            log.error("Exccption in switching tabs");
+            log.error(e.getMessage());
+            log.error(e);
+            e.printStackTrace();
+            isNewWindow = false;
+        }
+        return isNewWindow;
     }
 
     public void refresh() {
@@ -120,7 +133,7 @@ public class CustomDriver {
             elementList = driver.findElements(byType);
             log.info("Element list found  :" + info);
         } catch (Exception e) {
-            log.error("Element list not found  : "  + info);
+            log.error("Element list not found  : " + info);
             e.printStackTrace();
         }
         return elementList;
@@ -207,16 +220,18 @@ public class CustomDriver {
         }
     }
 
-    public void clickPopClose(String locator, int timeout, String info) {
+    public void clickPopClose(String locator, int timeout, String info, String visLocator) {
         try {
             driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-            WebElement element = null;
+            WebElement element = null, show = null;
             element = getElement(locator, info);
-
+            show = getElement(visLocator, "Visiblity locator");
             log.info("Waiting for max:: " + timeout + " seconds for element to be clickable");
 
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout), Duration.ofMillis(1000));
-            wait.until(ExpectedConditions.urlToBe("https://logytalks.com/"));
+            wait.until(ExpectedConditions.attributeToBe(show
+                    , "class", "modal fade show"));
+            log.info(show.getAttribute("class"));
             wait.until(ExpectedConditions.elementToBeClickable(element));
             element.click();
 
@@ -392,7 +407,12 @@ public class CustomDriver {
         return element;
     }
 
-    public WebElement waitForElementToBeClickable(String locator, int timeout) {
+    public void waitThenSendData(String locator, int timeout, String data, String info) {
+        WebElement element = waitForElement(locator, timeout);
+        sendData(element, data, info);
+    }
+
+    public WebElement waitThenClick(String locator, int timeout, String info) {
         By byType = getByType(locator);
         WebElement element = null;
         try {
@@ -404,6 +424,7 @@ public class CustomDriver {
                     ExpectedConditions.elementToBeClickable(byType));
             log.info("Element is clickable on the web page");
             driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+            elementClick(element, info);
         } catch (Exception e) {
             log.error("Element not appeared on the web page");
             driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);

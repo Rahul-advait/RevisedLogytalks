@@ -11,7 +11,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 
-public class VerifyUpcomingconferencepage extends BaseClassTest {
+public class VerifyUpcomingPage extends BaseClassTest {
     private UpcomingConference upcomingConference;
 
     @BeforeClass

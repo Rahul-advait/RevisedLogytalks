@@ -1,0 +1,27 @@
+18:50:21.161 INFO  base.WebDriverFactory -OS name from system property: win
+18:50:31.587 INFO  Base.CustomDriver -Pop close btn, found  Pop close btn
+18:50:31.604 INFO  Base.CustomDriver -Visiblity locator, found  Visiblity locator
+18:50:31.605 INFO  Base.CustomDriver -Waiting for max:: 30 seconds for element to be clickable
+18:50:37.893 INFO  Base.CustomDriver -modal fade show
+18:50:38.047 INFO  Base.CustomDriver -Clicked on close btn
+18:50:38.102 INFO  Base.CustomDriver -login btn, found  login btn
+18:50:39.219 ERROR Base.CustomDriver -Cannot click on ::login btn
+18:50:39.223 INFO  Utilities.Util -Date and Time :: 06_27_2023 18_50_39
+18:50:39.497 INFO  Base.CustomDriver -Screen Shot Was Stored at: C:\Users\iTechnolabs 06\Desktop\Resources\Work\logytalksnew//test-output/screenshots//_Click ERROR_06_27_2023 18_50_39.png
+18:50:39.522 INFO  base.CheckPoint -Clearing Results Hash Map
+18:50:42.546 ERROR Base.CustomDriver -Element not found Entering Email
+18:50:42.548 ERROR Base.CustomDriver -Cannot send keys on element :: Entering Email with data :: 
+18:50:45.622 ERROR Base.CustomDriver -Element not found Entering Password
+18:50:45.627 ERROR Base.CustomDriver -Cannot send keys on element :: Entering Password with data :: Test@123
+18:50:48.851 ERROR Base.CustomDriver -Element not found Remember Me Button
+18:50:51.957 ERROR Base.CustomDriver -Element not found Remember Me Button
+18:50:51.964 ERROR Base.CustomDriver -Cannot click on ::Remember Me Button
+18:50:51.978 INFO  Utilities.Util -Date and Time :: 06_27_2023 18_50_51
+18:50:52.328 INFO  Base.CustomDriver -Screen Shot Was Stored at: C:\Users\iTechnolabs 06\Desktop\Resources\Work\logytalksnew//test-output/screenshots//_Click ERROR_06_27_2023 18_50_51.png
+18:50:55.443 ERROR Base.CustomDriver -Element not found Login Btn
+18:50:55.445 ERROR Base.CustomDriver -Cannot click on ::Login Btn
+18:50:55.455 INFO  Utilities.Util -Date and Time :: 06_27_2023 18_50_55
+18:50:55.788 INFO  Base.CustomDriver -Screen Shot Was Stored at: C:\Users\iTechnolabs 06\Desktop\Resources\Work\logytalksnew//test-output/screenshots//_Click ERROR_06_27_2023 18_50_55.png
+18:50:59.114 INFO  Base.CustomDriver -Element list found  :Profile 
+18:50:59.114 INFO  Base.CustomDriver -Profile Element is not present
+18:50:59.124 INFO  testclasses.VerifyLoginFeature -------------------------------------------------------------

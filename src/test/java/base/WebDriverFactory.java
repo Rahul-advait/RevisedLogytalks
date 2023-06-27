@@ -54,12 +54,14 @@ public class WebDriverFactory {
             }
             threadedDriver.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
             threadedDriver.get().manage().window().maximize();
+            threadedDriver.get().manage().deleteAllCookies();
         }
         return threadedDriver.get();
     }
 
 
     public void quitDriver() {
+        threadedDriver.get().close();
         threadedDriver.get().quit();
         threadedDriver.set(null);
     }
@@ -106,6 +108,7 @@ public class WebDriverFactory {
 
         options.setExperimentalOption("prefs", prefs);
 //        options.addArguments("--incognito");
+
         options.addArguments("--disable-notifications");
         return options;
     }

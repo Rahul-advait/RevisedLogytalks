@@ -21,7 +21,7 @@ public class HomePage extends BasePage {
     }
 
     public NavigationBar cutPopUp() {
-        signUpNotification();
+//        signUpNotification();
         elementClick(TUTORIAL_POP_UP, "Tutorial pop btn");
         return new NavigationBar(driver);
     }

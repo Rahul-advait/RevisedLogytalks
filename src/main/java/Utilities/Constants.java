@@ -18,5 +18,7 @@ public class Constants {
     public static final String DEFAULT_PASSWORD = "Test@123";
     public static final String INVALID_USERNAME = "rahulsinghas@yopmail.com";
     public static final String INVALID_PASSWORD = "Test@1234";
+    public static final String GOOGLE_EMAIL = "pequirebicep@gmail.com";
+    public static final String GOOGLE_PASS = "1@mThestar";
 }
 

@@ -10,6 +10,7 @@ import java.util.List;
 public class NavigationBar extends BasePage {
     private static boolean firstTime = true;
     private WebDriver driver;
+    private String POP_SHOW = "cssSelector=>div#modal-subscribe";
     private String LIBRARY = "linkText=>Library";
     private String CONFERENCES = "linkText=>Conferences";
     private String CONFERENCES_CATEGORIES = "cssSelector=>.dropdown-menu.show > a";
@@ -18,20 +19,21 @@ public class NavigationBar extends BasePage {
     private String ROOMS = "linkText=>Rooms";
     private String POP_UP_CLOSE_BTN = "cssSelector=>.introjs-skipbutton";
     private String LOGIN_LINK = "linkText=>LOGIN";
-    private String POP_BTN = "cssSelector=>.close";
+    private String POP_BTN = "cssSelector=>div#modal-subscribe .close";
     private String PROFILE = "cssSelector=>button#dropdownMenuButton";
     private String LOGOUT_BTN = "cssSelector=>.logout-btn a";
     private String CREATE_CONFERENCE_LINK = "linkText=>Create Conference";
     private String URL = "https://logytalks.com/";
+
     public NavigationBar(WebDriver driver) {
         super(driver);
         this.driver = driver;
     }
 
     public LoginPage clickLoginLink() {
-        signUpNotification();
+//        signUpNotification();
         if (firstTime) {
-            clickPopClose(POP_BTN, 30, "Pop close btn");
+            clickPopClose(POP_BTN, 30, "Pop close btn", POP_SHOW);
             elementClick(LOGIN_LINK, "login btn");
             firstTime = false;
         } else {
@@ -73,9 +75,10 @@ public class NavigationBar extends BasePage {
         return new NavigationBar(driver);
     }
 
-    public void checkAllLinks(){
+    public void checkAllLinks() {
         checkPageLinks(URL);
     }
+
     public boolean verifyHeader() {
         WebElement link = getElement(CREATE_CONFERENCE_LINK, "create conference link");
         return Util.verifyTextMatch(link.getText(), "Create Conference");
