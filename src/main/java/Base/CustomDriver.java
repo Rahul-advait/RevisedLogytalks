@@ -105,9 +105,9 @@ public class CustomDriver {
         By byType = getByType(locator);
         try {
             element = driver.findElement(byType);
-            log.info(info + ", found with " + locator);
+            log.info(info + ", found  " + info);
         } catch (Exception e) {
-            log.error("Element not found with " + locator);
+            log.error("Element not found " + info);
             e.printStackTrace();
         }
         return element;
@@ -118,9 +118,9 @@ public class CustomDriver {
         By byType = getByType(locator);
         try {
             elementList = driver.findElements(byType);
-            log.info("Element list found with :" + locator + " of " + info);
+            log.info("Element list found  :" + info);
         } catch (Exception e) {
-            log.error("Element list not found with : " + locator + " of " + info);
+            log.error("Element list not found  : "  + info);
             e.printStackTrace();
         }
         return elementList;

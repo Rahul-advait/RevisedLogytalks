@@ -38,7 +38,7 @@ public class VerifyUpcomingconferencepage extends BaseClassTest {
     }
 
     @Test
-    public void verifyLogin() {
+    public void verifyMyConferenceLink() {
         MyConferencePage myConference = (MyConferencePage) navigationBar.clickConferenceCategory(
                 "My Conferences");
         boolean checkMyconferenceUrl = myConference.isOpen();

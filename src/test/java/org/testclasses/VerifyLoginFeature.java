@@ -27,6 +27,7 @@ public class VerifyLoginFeature extends BaseClassTest {
         }
     }
 
+    // Verify user is able to login with valid credentials
     @Test
     public void validCredentials() {
         navigationBar = login.signInWith(Constants.DEFAULT_USERNAME, Constants.DEFAULT_PASSWORD);
@@ -36,13 +37,17 @@ public class VerifyLoginFeature extends BaseClassTest {
         CheckPoint.markFinal("TC_02", result, "profile icon verification");
     }
 
+    // Verify user is unable to login invalid credentials
     @Test
     public void invalidEmail() {
         navigationBar = login.signInWith("rahulsinghas@yopmail.com", "Test@123");
-        boolean result = navigationBar.isUserLoggedIn();
-        assertFalse(result);
+        boolean loggedIn = navigationBar.isUserLoggedIn();
+        CheckPoint.mark("TC-01", !loggedIn, "Login verification");
+        boolean alert = login.isInvalidAlertPresent();
+        CheckPoint.markFinal("TC-02", alert, "Alert verification");
     }
 
+    //Verify user is not able to login with empty email
     @Test
     public void emptyEmail() {
         navigationBar = login.signInWith("", Constants.DEFAULT_PASSWORD);
@@ -50,6 +55,7 @@ public class VerifyLoginFeature extends BaseClassTest {
         assertFalse(result);
     }
 
+    /// Verify user is unable to login with invalid password
     @Test
     public void invalidPassword() {
         navigationBar = login.signInWith(Constants.DEFAULT_USERNAME, Constants.INVALID_PASSWORD);
@@ -57,13 +63,17 @@ public class VerifyLoginFeature extends BaseClassTest {
         assertFalse(result);
     }
 
+    // Verify user is unable to login with empty password
     @Test
     public void emptyPassword() {
         navigationBar = login.signInWith(Constants.DEFAULT_USERNAME, "");
         boolean result = navigationBar.isUserLoggedIn();
-        assertFalse(result);
+        CheckPoint.mark("TC=01", !result, "Check logged in ");
+        boolean isPassReq = login.getAttribute();
+        CheckPoint.markFinal("Tc-02", isPassReq, "Password required");
     }
 
+    //Verify user's session remains even after closing curren tab
     @Test
     public void testRememberMe() {
         navigationBar = login.signInWith(Constants.DEFAULT_USERNAME, Constants.DEFAULT_PASSWORD, true);
@@ -72,6 +82,7 @@ public class VerifyLoginFeature extends BaseClassTest {
         assertTrue(result);
     }
 
+    // Verify user navigates to sign up page after clicking on sign up button
     @Test
     public void signUpRedirect() {
         login.clickSignUpBtn();
@@ -79,6 +90,7 @@ public class VerifyLoginFeature extends BaseClassTest {
         assertTrue(result);
     }
 
+    // Verify user is able to login with google sign up
     @Test
     public void googleSignUp() {
         homePage = login.clickGoogleSignUpBtn();

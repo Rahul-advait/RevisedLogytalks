@@ -1,5 +1,7 @@
 package base;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 
 import java.util.ArrayList;
@@ -7,6 +9,7 @@ import java.util.HashMap;
 
 public class CheckPoint {
     public static HashMap<String, String> resultMap = new HashMap<String, String>();
+    private static Logger log = LogManager.getLogger(CheckPoint.class.getName());
     private static String PASS = "PASS";
     private static String FAIL = "FAIL";
 
@@ -14,7 +17,7 @@ public class CheckPoint {
      * Clears the results hash map
      */
     public static void clearHashMap() {
-        System.out.print("Clearing Results Hash Map");
+        log.info("Clearing Results Hash Map");
         resultMap.clear();
     }
 
@@ -25,7 +28,7 @@ public class CheckPoint {
      */
     private static void setStatus(String mapKey, String status) {
         resultMap.put(mapKey, status);
-        System.out.println(mapKey + " :-> " + resultMap.get(mapKey));
+        log.info(mapKey + " :-> " + resultMap.get(mapKey));
     }
 
     /**
@@ -45,7 +48,7 @@ public class CheckPoint {
                 setStatus(mapKey, FAIL);
             }
         } catch (Exception e) {
-            System.out.println("Exception Occurred...");
+            log.error("Exception Occurred...");
             setStatus(mapKey, FAIL);
             e.printStackTrace();
         }
@@ -60,6 +63,8 @@ public class CheckPoint {
      * @param result        - Verification Result from test method
      * @param resultMessage - Message tagged with verification
      */
+
+
     public static void markFinal(String testName, boolean result, String resultMessage) {
         testName = testName.toLowerCase();
         String mapKey = testName + "." + resultMessage;
@@ -70,7 +75,7 @@ public class CheckPoint {
                 setStatus(mapKey, FAIL);
             }
         } catch (Exception e) {
-            System.out.println("Exception Occurred...");
+            log.error("Exception Occurred...");
             setStatus(mapKey, FAIL);
             e.printStackTrace();
         }
@@ -83,12 +88,13 @@ public class CheckPoint {
 
         for (int i = 0; i < resultList.size(); i++) {
             if (resultList.contains(FAIL)) {
-                System.out.println("Test Method Failed");
-                Assert.assertTrue(false);
+                log.error("Test Method Failed");
+                Assert.fail();
             } else {
-                System.out.println("Test Method Successful");
+                log.info("Test Method Successful");
                 Assert.assertTrue(true);
             }
+
         }
     }
 }

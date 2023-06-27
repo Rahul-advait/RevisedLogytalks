@@ -3,9 +3,9 @@
 <suite name="Regression Test">
     <test name="Milestone 1" preserve-order="true">
         <classes>
-            <class name="org.testclasses.VerifyUpcomingconferencepage">
+            <class name="org.testclasses.VerifyLoginFeature">
                 <methods>
-                    <include name="checkPageLinks"/>
+                    <include name="emptyPassword"/>
                 </methods>
                 <!--            <class name="org.testclasses.VerifyUpcomingconferencepage"/>-->
             </class>
