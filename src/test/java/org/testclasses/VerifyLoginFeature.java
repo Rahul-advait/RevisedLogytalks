@@ -38,7 +38,7 @@ public class VerifyLoginFeature extends BaseClassTest {
     }
 
     // Verify log in with valid credentials
-    @Test
+    @Test(priority = 2)
     public void validCredentials() {
         navigationBar = login.signInWith(Constants.DEFAULT_USERNAME, Constants.DEFAULT_PASSWORD);
         boolean headerResult = navigationBar.verifyHeader();
@@ -99,7 +99,7 @@ public class VerifyLoginFeature extends BaseClassTest {
     }
 
     //Verify user's session closing current tab
-    @Test
+    @Test(priority = 1)
     public void testRememberMe() {
         navigationBar = login.signInWith(Constants.DEFAULT_USERNAME, Constants.DEFAULT_PASSWORD, true);
         boolean isNewWindow = navigationBar.closeCurrentOpenNew("upcoming-conferences");
@@ -109,7 +109,7 @@ public class VerifyLoginFeature extends BaseClassTest {
     }
 
     // Verify clicking on sign up button
-    @Test
+    @Test(priority = 3)
     public void signUpRedirect() {
         registrationPage = login.clickSignUpBtn();
         boolean result = registrationPage.isOpen();

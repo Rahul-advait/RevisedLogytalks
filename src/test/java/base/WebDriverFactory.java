@@ -101,11 +101,8 @@ public class WebDriverFactory {
         options.setExperimentalOption("useAutomationExtension", false);
 
         Map<String, Object> prefs = new HashMap<String, Object>();
-
         //      Pass the argument 1 to allow and 2 to block
         prefs.put("profile.default_content_setting_values.notifications", 1);
-
-
         options.setExperimentalOption("prefs", prefs);
 //        options.addArguments("--incognito");
 

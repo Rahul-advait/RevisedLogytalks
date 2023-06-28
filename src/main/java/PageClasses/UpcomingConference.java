@@ -35,7 +35,7 @@ public class UpcomingConference extends NavigationBar {
 
     public HomePage clickShareYourKnowledgeLink() {
         javascriptScrollToView(SHARE_YOUR_KNOWLEDGE_LINK, "Share you knowledge btn");
-        clickWhenReady(SHARE_YOUR_KNOWLEDGE_LINK, 20);
+        clickWhenReady(SHARE_YOUR_KNOWLEDGE_LINK, 20, "Share you knowledge btn");
         return new HomePage(driver);
     }
 }

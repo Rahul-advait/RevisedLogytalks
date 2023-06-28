@@ -161,6 +161,7 @@ public class CustomDriver {
             }
         } catch (Exception e) {
             log.error("Cannot click on ::" + info);
+            log.error(e.getMessage());
             e.printStackTrace();
             takeScreenshot("Click ERROR", "");
         }
@@ -200,13 +201,13 @@ public class CustomDriver {
         }
     }
 
-    public void clickWhenReady(String locator, int timeout) {
+    public void clickWhenReady(String locator, int timeout, String info) {
         try {
             driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
             WebElement element = null;
-            element = getElement(locator, " to be clicked after waiting ");
+            element = getElement(locator, info);
 
-            log.info("Waiting for " + timeout + " seconds for element to be clickable");
+            log.info("Waiting for " + timeout + " seconds for element to be clickable: " + info);
 
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
             wait.until(
@@ -215,7 +216,7 @@ public class CustomDriver {
             log.info("Clicked on waited Element");
             driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         } catch (Exception e) {
-            log.error("Element not appeared on the web page");
+            log.error("Element not appeared on the web page: " + info);
             driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         }
     }
@@ -228,7 +229,7 @@ public class CustomDriver {
             show = getElement(visLocator, "Visiblity locator");
             log.info("Waiting for max:: " + timeout + " seconds for element to be clickable");
 
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout), Duration.ofMillis(1000));
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout), Duration.ofMillis(3000));
             wait.until(ExpectedConditions.attributeToBe(show
                     , "class", "modal fade show"));
             log.info(show.getAttribute("class"));
@@ -381,7 +382,8 @@ public class CustomDriver {
     }
 
     public String getElementAttributeValue(String locator, String attribute) {
-        WebElement element = getElement(locator, "info");
+        WebElement element = waitForElement(locator, 20, "info");
+//        WebElement element = getElement(locator, "info");
         return element.getAttribute(attribute);
     }
 
@@ -389,7 +391,7 @@ public class CustomDriver {
         return element.getAttribute(attribute);
     }
 
-    public WebElement waitForElement(String locator, int timeout) {
+    public WebElement waitForElement(String locator, int timeout, String info) {
         By byType = getByType(locator);
         WebElement element = null;
         try {
@@ -398,17 +400,17 @@ public class CustomDriver {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
             element = wait.until(
                     ExpectedConditions.visibilityOfElementLocated(byType));
-            log.info("Element appeared on the web page");
+            log.info("Element appeared on the web page " + info);
             driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         } catch (Exception e) {
-            log.error("Element not appeared on the web page");
+            log.error("Element not appeared on the web page " + info);
             driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         }
         return element;
     }
 
     public void waitThenSendData(String locator, int timeout, String data, String info) {
-        WebElement element = waitForElement(locator, timeout);
+        WebElement element = waitForElement(locator, timeout, info);
         sendData(element, data, info);
     }
 

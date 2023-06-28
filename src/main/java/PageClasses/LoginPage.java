@@ -60,7 +60,8 @@ public class LoginPage extends BasePage {
     }
 
     public HomePage withGoogle() {
-        elementClick(GOOGLE_BTN, "Google Sign Up btn");
+//        elementClick(GOOGLE_BTN, "Google Sign Up btn");
+        waitThenClick(GOOGLE_BTN, 30, "Google Sign Up btn");
         waitThenSendData(GOOGLE_EMAIL, 30, Constants.GOOGLE_EMAIL, "Google Email Address");
 
         elementClick(GOOGLE_NEXT_BTN, "Google Next Btn");

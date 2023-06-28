@@ -10,7 +10,7 @@ import java.util.List;
 public class NavigationBar extends BasePage {
     private static boolean firstTime = true;
     private WebDriver driver;
-    private String POP_SHOW = "cssSelector=>div#modal-subscribe";
+    private String POP_SHOW = "xpath=>/html//div[@id='modal-subscribe']";
     private String LIBRARY = "linkText=>Library";
     private String CONFERENCES = "linkText=>Conferences";
     private String CONFERENCES_CATEGORIES = "cssSelector=>.dropdown-menu.show > a";
@@ -37,7 +37,7 @@ public class NavigationBar extends BasePage {
             elementClick(LOGIN_LINK, "login btn");
             firstTime = false;
         } else {
-            elementClick(LOGIN_LINK, "login btn");
+            waitThenClick(LOGIN_LINK, 30,"login btn");
         }
         return new LoginPage(driver);
     }
@@ -48,11 +48,11 @@ public class NavigationBar extends BasePage {
 
     public void clickLogOut() {
         elementClick(PROFILE, "profile");
-        clickWhenReady(LOGOUT_BTN, 30);
+        clickWhenReady(LOGOUT_BTN, 10, "log out btn");
     }
 
     public void cutPopUp() {
-        clickWhenReady(POP_UP_CLOSE_BTN, 30);
+        clickWhenReady(POP_UP_CLOSE_BTN, 30, "Pop close btn");
     }
 
     public NavigationBar clickConferenceCategory(String categoryType) {
